@@ -1,0 +1,32 @@
+{
+  "name": "hellomocha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "coverage": "nyc -r text -e .ts -x \"tests/*.test.ts\" npm run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.17",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.0.0",
+    "@types/sinon": "^10.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@types/signals": "^1.0.1",
+    "axios": "^0.21.1",
+    "jquery": "^3.6.0",
+    "signal-js": "^2.4.0",
+    "signals": "^1.0.0",
+    "sinon": "^10.0.0"
+  }
+}
