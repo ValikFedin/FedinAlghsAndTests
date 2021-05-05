@@ -95,10 +95,6 @@ export class BinaryHeap implements IHeap {
                     }
                     break;
                 }
-                default: {
-                    sorted = true;
-                    break;
-                }
             }
         }
     }
@@ -128,10 +124,6 @@ export class BinaryHeap implements IHeap {
                     else {
                         sorted = true;
                     }
-                    break;
-                }
-                default: {
-                    sorted = true;
                     break;
                 }
             }

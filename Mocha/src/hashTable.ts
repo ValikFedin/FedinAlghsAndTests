@@ -2,8 +2,10 @@ export class HashTable {
 
     private hashTable;
     private salt: number;
-    constructor(private hashSize = 137) {
+    private hashSize: number;
+    constructor(hashSize: number) {
         this.hashTable = new Array(hashSize);
+        this.hashSize = hashSize;
         this.salt = Math.round(Math.random() * 100);
     }
 
@@ -12,14 +14,12 @@ export class HashTable {
         let hash = this.hash(key);
 
         if (this.hashTable[hash]) {
-            while (!this.hashTable[hash] && hash <= this.hashSize) {
+            while (this.hashTable[hash] && hash <= this.hashSize) {
                 hash++;
             }
         }
 
-        if (hash) {
-            this.hashTable[hash] = [key, value];
-        }
+        this.hashTable[hash] = [key, value];
     }
 
     public get(key: string): string | undefined {
@@ -27,7 +27,7 @@ export class HashTable {
 
         if (this.hashTable[hash]) {
             if (this.hashTable[hash][0] !== key) {
-                while (!this.hashTable[hash] && hash <= this.hashSize) {
+                while (this.hashTable[hash] && hash <= this.hashSize) {
                     hash++;
                 }
             }
@@ -38,7 +38,7 @@ export class HashTable {
     public remove(key: string): any[] | undefined {
         let hash: number = this.hash(key);
         let result;
-        if (this.hashTable[hash][0] === key) {
+        if (this.hashTable[hash]) {
             result = this.hashTable.splice(hash, 1, undefined);
         }
         return result;

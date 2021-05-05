@@ -1,11 +1,12 @@
 import { BinaryHeap } from "./binaryHeap";
+import { Order } from "./IHeap";
 import { Item } from "./item";
 
 export class PriorityQueue {
     heap: BinaryHeap;
 
-    constructor(items: Item[]) {
-        this.heap = new BinaryHeap(items);
+    constructor(items: Item[], order: Order = Order.MIN) {
+        this.heap = new BinaryHeap(items,order);
     }
 
     public insert(item: Item): void {

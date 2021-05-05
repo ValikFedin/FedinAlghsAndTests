@@ -1,7 +1,9 @@
 export class Stack<T> {
     private storage: T[] = [];
-
-    constructor(private capacity: number = Infinity) { }
+    private capacity: number;
+    constructor(capacity: number) { 
+        this.capacity = capacity;
+    }
 
     public push(item: T): void {
         if (this.size() === this.capacity) {
