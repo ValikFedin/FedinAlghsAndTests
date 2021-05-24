@@ -33,9 +33,6 @@ export class BinaryHeap implements IHeap {
         return this.heap[0];
     };
 
-    public show(): void {
-        console.log(this.heap);
-    }
 
     public size(): number {
         return this.heap.length;
@@ -78,13 +75,10 @@ export class BinaryHeap implements IHeap {
                         this.heap[currentPos].priority < this.heap[rightIdx].priority) {
                         currentPos = rightIdx;
                     }
-                    else { }
-
                     if (leftIdx < this.heap.length &&
                         this.heap[currentPos].priority < this.heap[leftIdx].priority) {
                         currentPos = leftIdx;
                     }
-                    else { }
 
                     if (currentPos == idx) {
                         sorted = true;

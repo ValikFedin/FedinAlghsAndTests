@@ -5,6 +5,5 @@ export interface IHeap {
     insert(item:Item):void;
     extract():Item;
     peek():Item;
-    show():void;
     size():number;
 };

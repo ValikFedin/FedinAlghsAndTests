@@ -1,6 +1,6 @@
 export class HashTable {
 
-    private hashTable;
+    private hashTable: any;
     private salt: number;
     private hashSize: number;
     constructor(hashSize: number) {
@@ -13,25 +13,12 @@ export class HashTable {
     public add(key: string, value: any) {
         let hash = this.hash(key);
 
-        if (this.hashTable[hash]) {
-            while (this.hashTable[hash] && hash <= this.hashSize) {
-                hash++;
-            }
-        }
-
         this.hashTable[hash] = [key, value];
     }
 
     public get(key: string): string | undefined {
         let hash: number = this.hash(key);
 
-        if (this.hashTable[hash]) {
-            if (this.hashTable[hash][0] !== key) {
-                while (this.hashTable[hash] && hash <= this.hashSize) {
-                    hash++;
-                }
-            }
-        }
         return this.hashTable[hash] ? this.hashTable[hash] : undefined;
     }
 

@@ -1,7 +1,9 @@
 import { HashTable } from "./hashTable";
 
 let hash = new HashTable(100);
-hash.add("cat", "meow");
-hash.add("cat", "no");
+// hash.add("cat", "meow");
 
-console.log(hash.get("cat"));
+hash.add("MYHASH", "ANY");
+// hash.add("cat", "no");
+
+// console.log(hash.get("cat"));

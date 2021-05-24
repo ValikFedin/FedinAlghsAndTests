@@ -47,9 +47,9 @@ describe('Priority Queue', function () {
     let item1 = new Item(1, { value: 10 });
     let items = [item3, item1, item2];
     let queue = new PriorityQueue(items);
-    queue.insert(new Item(2, {value: 20}));
-    queue.insert(new Item(1, {value: 19}));
-    queue.insert(new Item(4, {value: 19}));
+    queue.insert(new Item(2, { value: 20 }));
+    queue.insert(new Item(1, { value: 19 }));
+    queue.insert(new Item(4, { value: 19 }));
     it('Queue peek head item', () => {
       expect(queue.peek()).deep.equal(item1);
     });
@@ -57,12 +57,37 @@ describe('Priority Queue', function () {
       expect(queue.pull()).deep.equal(item1);
     });
     it('Queue peek new head item', () => {
-      expect(queue.peek()).deep.equal(new Item(1, {value: 19}));
+      expect(queue.peek()).deep.equal(new Item(1, { value: 19 }));
     });
     it('Queue is not empty', () => {
       expect(queue.isEmpty()).not.true;
     });
-    queue.show();
+
+  })
+  describe("Empty Queue", () => {
+    let queue = new PriorityQueue([], Order.MAX);
+    it("Is Empty", () => {
+      expect(queue.isEmpty()).true;
+    })
+  })
+  describe("Insert Test", () => {
+
+    const sandbox = sinon.createSandbox();
+    let item2 = new Item(2, { value: 20 });
+    let item1 = new Item(1, { value: 10 });
+    let items = [item1, item2];
+    let queue = new PriorityQueue(items, Order.MAX);
+    beforeEach(() => {
+      sandbox.spy(queue.heap);
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+    it("Sure to call once", () => {
+      queue.insert(new Item(12, { value: 20 }));
+      expect((queue as any).heap.insert.calledOnce).true;
+    })
   })
   describe("Peek and pull head item Max Order", () => {
     let item2 = new Item(2, { value: 20 });
@@ -70,8 +95,8 @@ describe('Priority Queue', function () {
     let item1 = new Item(1, { value: 10 });
     let items = [item3, item1, item2];
     let queue = new PriorityQueue(items, Order.MAX);
-    queue.insert(new Item(2, {value: 20}));
-    queue.insert(new Item(1, {value: 19}));
+    queue.insert(new Item(2, { value: 20 }));
+    queue.insert(new Item(1, { value: 19 }));
     it('Queue peek head item', () => {
       expect(queue.peek()).deep.equal(item3);
     });
@@ -84,8 +109,8 @@ describe('Priority Queue', function () {
     it('Queue is not empty', () => {
       expect(queue.isEmpty()).not.true;
     });
-    queue.show();
   })
+
   describe("Insert item with biger priority", () => {
     let item2 = new Item(3, { value: 30 });
     let item3 = new Item(4, { value: 40 });
@@ -97,6 +122,16 @@ describe('Priority Queue', function () {
       queue.insert(newItem);
       expect(queue.peek()).deep.equal(newItem);
     });
+  })
+
+  describe("Item Testing", () => {
+    it("Create a new Item", () => {
+      let itemPriority = 10;
+      let itemValue = { value: 20 };
+      let newItem = new Item(itemPriority, itemValue);
+      expect(newItem.priority).is.equal(itemPriority);
+      expect(newItem.value).deep.equal(itemValue);
+    })
   })
 })
 
@@ -113,18 +148,6 @@ describe('Hash Table', function () {
     });
   })
 
-  describe("Same Hash", () => {
-    let hashTable = new HashTable(100);
-
-    sinon.stub(hashTable, "hash").callsFake((value: string) => {
-      return 10;
-    })
-
-    hashTable.add("cat", "1");
-    hashTable.add("cat", "2");
-
-    hashTable.get("dog");
-  });
   describe("Removing Items", () => {
     let hash = new HashTable(100);
     hash.add("cat", "meow");

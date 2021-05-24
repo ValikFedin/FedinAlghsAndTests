@@ -14,7 +14,7 @@ export class PriorityQueue {
     }
 
     public isEmpty(): boolean {
-        return this.heap.size() == 0;
+        return this.heap.size() === 0;
     }
 
     public peek(): Item {
@@ -23,10 +23,6 @@ export class PriorityQueue {
 
     public pull(): Item {
         return this.heap.extract();
-    }
-
-    public show(): void {
-        this.heap.show();
     }
 
 }
